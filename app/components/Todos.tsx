@@ -11,10 +11,12 @@ export default function Todos() {
 
   const [text, setText] = useState("");
 
+  const [loading, setLoading] = useState(true);
   const fetchTodos = async () => {
     const response = await fetch("https://todoapp-psi-lac.vercel.app/api");
     const data = await response.json();
     setTodos(data);
+    setLoading(false);
   };
 
   const deleteTodo = async (tid: number) => {
@@ -55,11 +57,9 @@ export default function Todos() {
   };
 
   const sortedTodos = todos.sort((a, b) => a.id - b.id);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchTodos();
-    setLoading(false);
   }, []);
 
   return (
