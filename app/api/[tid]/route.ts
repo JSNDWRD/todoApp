@@ -15,20 +15,14 @@ export async function PUT(
   return NextResponse.json(updateTodo);
 }
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { tid: string } }
-) {
+export async function GET({ params }: { params: { tid: string } }) {
   const todo = await prisma.todos.findUnique({
     where: { id: parseInt(await params.tid, 10) },
   });
   return NextResponse.json(todo);
 }
 
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { tid: string } }
-) {
+export async function DELETE({ params }: { params: { tid: string } }) {
   const deleteTodo = await prisma.todos.delete({
     where: { id: parseInt(params.tid, 10) },
   });
