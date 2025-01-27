@@ -12,13 +12,13 @@ export default function Todos() {
   const [text, setText] = useState("");
 
   const fetchTodos = async () => {
-    const response = await fetch("http://localhost:3000/api");
+    const response = await fetch("https://todoapp-psi-lac.vercel.app/api");
     const data = await response.json();
     setTodos(data);
   };
 
   const deleteTodo = async (tid: number) => {
-    await fetch(`http://localhost:3000/api/${tid}`, {
+    await fetch(`https://todoapp-psi-lac.vercel.app/api/${tid}`, {
       method: "DELETE",
     });
     fetchTodos();
@@ -34,7 +34,7 @@ export default function Todos() {
 
   const modifyTodo = async () => {
     const todoId = currentTodoId;
-    await fetch(`http://localhost:3000/api/${todoId}`, {
+    await fetch(`https://todoapp-psi-lac.vercel.app/api/${todoId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ description: description }),
@@ -46,7 +46,7 @@ export default function Todos() {
 
   const postTodo = async () => {
     if (text != "") {
-      await fetch("http://localhost:3000/api", {
+      await fetch("https://todoapp-psi-lac.vercel.app/api", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ description: text }),
